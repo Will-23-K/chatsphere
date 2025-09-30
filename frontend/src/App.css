@@ -1,0 +1,262 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #36393f;
+  color: white;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#root {
+  height: 100vh;
+}
+
+/* Enhanced Loading Screen */
+.loading-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.loading-screen p {
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Enhanced Chat Container */
+.chat-container {
+  display: flex;
+  height: 100vh;
+  background: #36393f;
+}
+
+/* Enhanced Chat Main Area */
+.chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevent flex overflow */
+}
+
+/* Enhanced Chat Header */
+.chat-header {
+  background: #36393f;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #40444b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.chat-header-info h1 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+.online-count {
+  color: #72767d;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.unread-indicator {
+  color: #ed4245;
+  font-weight: 600;
+}
+
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.connection-status {
+  font-size: 0.9rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.connection-status.connected {
+  background: rgba(59, 165, 92, 0.1);
+  color: #3ba55c;
+}
+
+.connection-status.disconnected {
+  background: rgba(237, 66, 69, 0.1);
+  color: #ed4245;
+}
+
+.logout-btn {
+  background: #ed4245;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background: #c03537;
+  transform: translateY(-1px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+/* Print Styles */
+@media print {
+  .chat-container {
+    display: block;
+  }
+  
+  .room-sidebar,
+  .chat-header-actions,
+  .message-input {
+    display: none;
+  }
+  
+  .chat-main {
+    display: block;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .delete-message-btn,
+  .quick-emoji-reactions {
+    opacity: 1 !important;
+  }
+  
+  .emoji-picker-btn,
+  .file-upload-btn {
+    padding: 0.75rem;
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Large Screen Optimizations */
+@media (min-width: 1920px) {
+  .chat-container {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+  
+  .room-sidebar {
+    width: 350px;
+  }
+  
+  .message {
+    max-width: 60%;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation: none;
+  }
+  
+  .message {
+    animation: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .room-item.active {
+    border-left: 4px solid #5865f2;
+    background: rgba(88, 101, 242, 0.3);
+  }
+  
+  .connection-status {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Dark Mode Support (already dark, but for consistency) */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #36393f;
+    color: white;
+  }
+}
+
+/* Mobile Landscape Optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .chat-header {
+    padding: 0.5rem 1rem;
+  }
+  
+  .room-sidebar {
+    padding-top: 0.5rem;
+  }
+  
+  .user-profile {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Very Small Screens */
+@media (max-width: 320px) {
+  .chat-header {
+    padding: 0.75rem;
+  }
+  
+  .chat-header-info h1 {
+    font-size: 1rem;
+  }
+  
+  .connection-status {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .logout-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
